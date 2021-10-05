@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Header from './search/Header'
+import Card from './movieGrid/Card'
 import { Movie } from './models/Movie'
 import './App.css';
 
@@ -38,21 +40,11 @@ const App = () => {
 
 	return (
 	<>
-		<header>
-			<h1> Hollywood watch </h1>
-			<input type="text" />
-			<span className="magnify-search">🔍</span>
-		</header>
+		<Header />
 
 		<main className="card-grid">
-			{movies.map(movie => (
-				<section key={movie.id} className="card">
-					<div className="image">
-						<img src={'./assets/' + movie.imgSrc} alt="Movie poster" />
-					</div>
-					<h3> {movie.title} </h3>
-					<p> {movie.premiere} </p>
-				</section>
+			{movies.map(movieObject => (
+				<Card movie={movieObject} key={movieObject.id} />
 			))}
 		</main>
 	</>
