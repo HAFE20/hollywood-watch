@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from './search/Header'
 import Card from './movieGrid/Card'
 import { Movie } from './models/Movie'
+import { filterMovies } from './helperFunctions'
 import './App.css';
 
 // Exempel mockup:
@@ -38,17 +39,24 @@ const data: Movie[] = [
 const App = () => {
 	const [movies/*, setMovies*/] = useState<Movie[]>(data)
 
+	// searchString kommer att ändras av Header-komponenten, men användas här
+	const [searchString, setSearchString] = useState<string>('')
+
+	const filteredMovies: Movie[] = filterMovies(movies, searchString)
+
 	return (
 	<>
-		<Header />
+		<Header search={searchString}
+			updateSearch={setSearchString} />
 
 		<main className="card-grid">
-			{movies.map(movieObject => (
+			{filteredMovies.map(movieObject => (
 				<Card movie={movieObject} key={movieObject.id} />
 			))}
 		</main>
 	</>
 )};
+
 
 
 export default App;
