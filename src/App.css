@@ -1,11 +1,13 @@
 body {
-	background-color: #262937;
+	--body-background: #262937;
+	--heading-color: #e78917;
+	background-color: var(--body-background);
 }
 header {
 	text-align: center;
 }
 h1 {
-	color: #e78917;
+	color: var(--heading-color);
 }
 header input {
 	font-size: 1.5em;

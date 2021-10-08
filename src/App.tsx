@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Header from './search/Header'
 import CardGrid from './movieGrid/CardGrid'
+import Overlay from './addMovie/Overlay'
 import { Movie } from './models/Movie'
 import { filterMovies } from './helperFunctions'
 import './App.css';
@@ -38,11 +39,21 @@ const data: Movie[] = [
 
 const App = () => {
 	const [movies/*, setMovies*/] = useState<Movie[]>(data)
+	const [showAddMovieOverlay, setShowAddMovieOverlay] = useState<boolean>(true)  // ändra till false när vi testat klart
 
 	// searchString kommer att ändras av Header-komponenten, men användas här
 	const [searchString, setSearchString] = useState<string>('')
 
 	const filteredMovies: Movie[] = filterMovies(movies, searchString)
+
+
+	let addMovieOverlay = null
+	if( showAddMovieOverlay ) {
+		const closeOverlay = () => setShowAddMovieOverlay(false)
+		addMovieOverlay = <Overlay close={closeOverlay} />
+		// JSX översätts till funktionsanrop: _jsx('h1', 'content')
+	}
+
 
 	return (
 	<>
@@ -50,6 +61,8 @@ const App = () => {
 			updateSearch={setSearchString} />
 
 		<CardGrid filteredMovies={filteredMovies} />
+
+		{addMovieOverlay}
 	</>
 )};
 
