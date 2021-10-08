@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Header from './search/Header'
-import Card from './movieGrid/Card'
+import CardGrid from './movieGrid/CardGrid'
 import { Movie } from './models/Movie'
 import { filterMovies } from './helperFunctions'
 import './App.css';
@@ -49,11 +49,7 @@ const App = () => {
 		<Header search={searchString}
 			updateSearch={setSearchString} />
 
-		<main className="card-grid">
-			{filteredMovies.map(movieObject => (
-				<Card movie={movieObject} key={movieObject.id} />
-			))}
-		</main>
+		<CardGrid filteredMovies={filteredMovies} />
 	</>
 )};
 

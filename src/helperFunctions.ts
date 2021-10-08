@@ -1,6 +1,6 @@
 import { Movie } from './models/Movie'
 
-function filterMovies(movies: Movie[], searchString: string) {
+function filterMovies(movies: Movie[], searchString: string): Movie[] {
 	return movies.filter(movie => {
 	   if( searchString === '' ) {
 		   // Visa alla filmer
@@ -11,10 +11,10 @@ function filterMovies(movies: Movie[], searchString: string) {
 		   const search = searchString.toLowerCase()
 
 		   // Leta i hela strängen
-		   // return title.includes(search)
+		   return title.includes(search)
 
 		   // Leta från början
-		   return title.startsWith(search)
+		   // return title.startsWith(search)
 	   }
    })
 }
