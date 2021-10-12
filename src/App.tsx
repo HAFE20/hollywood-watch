@@ -46,19 +46,29 @@ const App = () => {
 
 	const filteredMovies: Movie[] = filterMovies(movies, searchString)
 
+	const addMovie = (movie: Movie) => {
+		// TODO: anropa setMovies
+		console.log('App.addMovie anropad med movie=', movie)
+	}
 
 	let addMovieOverlay = null
 	if( showAddMovieOverlay ) {
 		const closeOverlay = () => setShowAddMovieOverlay(false)
-		addMovieOverlay = <Overlay close={closeOverlay} />
+		addMovieOverlay = <Overlay close={closeOverlay} addMovie={addMovie} />
 		// JSX översätts till funktionsanrop: _jsx('h1', 'content')
+	}
+
+	const showOverlay = () => {
+		// visa overlay
+		setShowAddMovieOverlay(true)
 	}
 
 
 	return (
 	<>
 		<Header search={searchString}
-			updateSearch={setSearchString} />
+			updateSearch={setSearchString}
+			addMovie={showOverlay} />
 
 		<CardGrid filteredMovies={filteredMovies} />
 
